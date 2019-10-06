@@ -6,6 +6,7 @@ use backend\models\Apple;
 use backend\models\AppleEatModel;
 use backend\models\AppleFallModel;
 use backend\models\AppleGenerateModel;
+use backend\services\AppleService;
 use Yii;
 use yii\filters\AccessControl;
 
@@ -14,6 +15,26 @@ use yii\filters\AccessControl;
  */
 class AppleController extends Controller
 {
+    /**
+     * @var AppleService
+     */
+    protected $appleService;
+
+    /**
+     * AppleController constructor.
+     * @param $id
+     * @param $module
+     * @param array $config
+     */
+    public function __construct($id, $module, $config = [])
+    {
+        parent::__construct($id, $module, $config);
+        $this->appleService = new AppleService();
+    }
+
+    /**
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -32,10 +53,11 @@ class AppleController extends Controller
 
     /**
      * @return string
+     * @throws \Exception
      */
     public function actionList()
     {
-        $apples = Apple::allValid();
+        $apples = $this->appleService->allWithPagination();
 
         return $this->render('list', [
             'apples' => $apples

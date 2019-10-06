@@ -7,7 +7,7 @@ namespace backend\controllers;
 use App\Helpers\HttpResponseHelper;
 use Yii;
 
-class Controller extends \yii\web\Controller
+class Controller extends \yii\rest\Controller
 {
     /**
      * @param array $data

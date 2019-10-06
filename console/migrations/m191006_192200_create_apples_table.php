@@ -21,7 +21,7 @@ class m191006_192200_create_apples_table extends Migration
             'status'  => $this
                 ->smallInteger()
                 ->unsigned(),
-            'fall_at' => $this
+            'falled_at' => $this
                 ->timestamp()
                 ->null()
                 ->defaultValue(null),

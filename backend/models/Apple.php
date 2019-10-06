@@ -76,7 +76,7 @@ class Apple extends ActiveRecord
         ]);
     }
 
-    public static function allValid()
+    public static function allValidQuery()
     {
         $validDate = (new \DateTime())
             ->modify("-" . self::ROTTEN_TIME . " hours");
